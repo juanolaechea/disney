@@ -1,6 +1,7 @@
 package com.example.disney.domine;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,16 +20,21 @@ class Personaje {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idPersonaje")
+    @Column(name = "idPersonaje")
     private Integer idPersonaje;
-    @Column(name ="name" )
+    @Column(name = "nombre")
     private String name;
-    @Column(name = "age")
+    @Column(name = "edad")
     private Integer age;
-    @Column(name ="weight")
+    @Column(name = "peso")
     private Float weight;
-    @Column(name = "history")
+    @Column(name = "hsitoria")
     private String history;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_peliculasSeries" )
+    PeliculaSerie peliculasSeries;
 
 
 

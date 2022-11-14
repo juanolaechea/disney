@@ -1,6 +1,7 @@
 package com.example.disney.domine;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +33,13 @@ public class PeliculaSerie {
     @Enumerated(EnumType.STRING)
     private CalificationValue calificacion;
 
-   
+    @OneToMany(mappedBy = "peliculasSeries")
+    List<Personaje> personajes= new ArrayList<Personaje>();
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fk_genero" )
+    Genero genero;
 
 
 

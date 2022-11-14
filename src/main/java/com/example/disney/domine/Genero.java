@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +23,17 @@ public class Genero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idGenero")
     private Integer idGenero;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @OneToMany(mappedBy = "genero")
+    List<PeliculaSerie> peliculaSeries= new ArrayList<PeliculaSerie>();
+
+
+
+
+
 
 
 }
