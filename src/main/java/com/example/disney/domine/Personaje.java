@@ -28,7 +28,7 @@ public class Personaje {
     private Integer age;
     @Column(name = "peso")
     private Float weight;
-    @Column(name = "hsitoria")
+    @Column(name = "historia")
     private String history;
 
     @JsonIgnore
