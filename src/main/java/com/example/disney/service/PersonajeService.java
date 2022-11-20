@@ -1,6 +1,7 @@
 package com.example.disney.service;
 
 import com.example.disney.domine.Personaje;
+import com.example.disney.dto.DtoPersonaje;
 import com.example.disney.persistence.PersonajeRepository;
 import com.example.disney.utils.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,38 @@ public class PersonajeService {
 
 
     public void deletePersonje(Integer idPersonaje) {
+        if( this.personajeRepository.existsById(idPersonaje)) {
+            this.personajeRepository.deleteById(idPersonaje);
+        }else {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST,"Personaje no existe");
+        }
 
-        this.personajeRepository.deleteById(idPersonaje);
     }
 
     public Personaje getById(Integer idPersonaje) {
         return this.personajeRepository.findById(idPersonaje)
                 .orElseThrow(()-> new HttpClientErrorException(HttpStatus.BAD_REQUEST,"Personaje not exist"));
+
+    }
+
+    /**
+    public Country update_country (String code, Country country){
+        Country old= this.countryDao.findById(code).orElseThrow(ElementDoesNotExistsException::new);
+        old.setName(country.getName());
+        return this.countryDao.save(old);
+
+    }
+     **/
+
+
+    public Personaje updatePersonaje(Integer idPersonaje, Personaje personaje) {
+       Personaje old = this.personajeRepository.findById(idPersonaje).orElseThrow(()-> new HttpClientErrorException(HttpStatus.BAD_REQUEST,"Personaje not exist"));
+        old.setName(personaje.getName());
+        old.setHistory(personaje.getHistory());
+        old.setAge(personaje.getAge());
+        old.setWeight(personaje.getWeight());
+       return this.personajeRepository.save(old);
+
 
     }
 }
