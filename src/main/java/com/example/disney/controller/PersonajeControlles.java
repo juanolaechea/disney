@@ -42,7 +42,7 @@ public class PersonajeControlles {
 
 
     @GetMapping(path=URL_PERSONAJE +"/{idPersonaje}")
-    public Personaje getClientById(@PathVariable("idPersonaje") Integer idPersonaje){
+    public Personaje getById(@PathVariable("idPersonaje") Integer idPersonaje){
        return  this.personajeService.getById(idPersonaje);
     }
 

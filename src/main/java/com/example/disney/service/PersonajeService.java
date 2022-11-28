@@ -57,15 +57,6 @@ public class PersonajeService {
 
     }
 
-    /**
-    public Country update_country (String code, Country country){
-        Country old= this.countryDao.findById(code).orElseThrow(ElementDoesNotExistsException::new);
-        old.setName(country.getName());
-        return this.countryDao.save(old);
-
-    }
-     **/
-
 
     public Personaje updatePersonaje(Integer idPersonaje, Personaje personaje) {
        Personaje old = this.personajeRepository.findById(idPersonaje).orElseThrow(()-> new HttpClientErrorException(HttpStatus.BAD_REQUEST,"Personaje not exist"));
